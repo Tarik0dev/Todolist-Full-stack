@@ -12,8 +12,7 @@ CREATE TABLE users (
     role VARCHAR(20) DEFAULT 'user' CHECK (role IN ('user', 'admin')),
     password VARCHAR(100) NOT NULL,
     created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
-    reset_token VARCHAR(255),
-    reset_token_expires TIMESTAMP
+ 
 );
 
 CREATE TABLE tasks (
