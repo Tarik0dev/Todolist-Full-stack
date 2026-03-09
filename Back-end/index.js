@@ -1,16 +1,22 @@
 const pool = require('./config/configDatabase');// IMPORT IMPORTANT : On récupère le pool
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(cors({origin: 'http://localhost:4200'}));
+app.use(cors({
+  origin: ['http://localhost:4200', 'http://localhost:8080']
+}));
+
 app.use(express.json());
 
 app.get('/', (req, res) => {
 res.send('API Todo List est en ligne !');});
 
+app.get('/health', (req, res) => {
+  res.status(200).json({ ok: true });
+});
 
 const authRoutes = require('./routes/authRoutes')
 app.use('/auth', authRoutes)
@@ -24,7 +30,7 @@ app.use('/task', taskRoutes)
 // --- TEST DE CONNEXION AU DÉMARRAGE ---
 
 
-app.listen(PORT, async () => {// On force le serveur à dire "Bonjour" à PostgreSQL dès qu'il s'allume
+app.listen(PORT, '0.0.0.0', async () => {// On force le serveur à dire "Bonjour" à PostgreSQL dès qu'il s'allume
     console.log(`Serveur démarré sur le port ${PORT}`);
 
     try {

@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+
+  database:
+    image: postgres:17
+    container_name: Todo_database
+    restart: unless-stopped
+    ports:
+      - "5433:5432"
+    env_file:
+      - .env
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    
+  backend:
+    build: ./Back-end
+    container_name: Todo_api
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    depends_on:
+      - database
+    volumes:
+      - ./Back-end:/app
+      - /app/node_modules
+  frontend:
+    build: /Front-end
+    container_name: Todo_Frontend
+    restart: unless-stopped
+    ports:
+      -"80:80"
+    env_file:
+      - .env
+    depends_on:
+      - backend
+
+  
+
+volumes:
+  postgres_data:

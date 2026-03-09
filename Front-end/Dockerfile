@@ -30,6 +30,9 @@ FROM nginx:alpine
 # On récupère UNIQUEMENT les fichiers compilés
 # depuis l'étape 1
 COPY --from=build /app/dist/Front-end/browser /usr/share/nginx/html
+
+
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 #                              ↑
 #                    Le nom exact confirmé
 #                    par ton dir dist\Front-end
