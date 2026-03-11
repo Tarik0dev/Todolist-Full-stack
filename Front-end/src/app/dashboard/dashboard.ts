@@ -26,9 +26,7 @@ export class Dashboard implements OnInit {
     this.getTasks();
     this.getUserInfo();
     this.searchInput.valueChanges.subscribe({next: (value: string | null) => {
-      if (value) {
-        this.getTasks();
-      }
+      this.getTasks();
     }});
   }
   

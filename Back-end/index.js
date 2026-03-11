@@ -1,5 +1,5 @@
-const pool = require('./config/configDatabase');// IMPORT IMPORTANT : On récupère le pool
 require('dotenv').config();
+const pool = require('./config/configDatabase');// IMPORT IMPORTANT : On récupère le pool
 const express = require('express');
 const cors = require('cors');
 const app = express();
