@@ -1,15 +1,12 @@
 const taskModel = require("../models/taskModels");
-
+const taskService = require("../services/taskService");
 const taskControllers = {
   add: async (req, res) => {
-    const user = req.auth;
+    const userId = req.auth.userId;
     try {
       const { description } = req.body;
 
-      const insertedTask = await taskModel.create({
-        description,
-        userId: user.userId,
-      });
+      await taskService.addTask(description, userId);
 
       // 201 status created -> une resource a été crée / 200 aussi valide dans ce cas.
       res.status(201).json({
@@ -24,21 +21,10 @@ const taskControllers = {
 
   getAll: async (req, res) => {
     try {
-      const user = req.auth;
+      const userId = req.auth.userId;
+      const description = req.query.description ?? "";
 
-      const raw = req.query.description;
-      const description = (Array.isArray(raw) ? raw[0] : raw) ?? '';
-
-      const tasks = await taskModel.getAll(user.userId, description);
-
-      const stats = await taskModel.getTaskStats(user.userId);
-
-      const response = {
-        total: stats.total,
-        ongoing: stats.ongoing,
-        completed: stats.completed,
-        result: tasks
-      };
+      const response = await taskService.getAllTasks(userId, description);
 
       res.status(200).json(response);
     } catch (error) {
@@ -51,9 +37,9 @@ const taskControllers = {
 
   delete: async (req, res) => {
     try {
-      const user = req.auth.userId;
+      const userId = req.auth.userId;
       const taskId = req.params.taskId;
-      const request = await taskModel.delete(user, taskId);
+      await taskService.deleteTask(userId, taskId);
       res.status(200).json({
         message: "la tache à bien été supprimée",
       });
@@ -65,10 +51,10 @@ const taskControllers = {
 
   update: async (req, res) => {
     try {
-      const user = req.auth.userId;
+      const userId = req.auth.userId;
       const taskId = req.params.taskId;
-      const description = req.body.description
-      const request = await taskModel.update(description, user, taskId, );
+      const description = req.body.description;
+      await taskService.updateTask(userId, taskId, description);
       res.status(200).json({
         message: "la tache à bien été mise à jour",
       });
@@ -78,21 +64,17 @@ const taskControllers = {
   },
 
   updateCheckboxTask: async (req, res) => {
-
-
-  try {
-      const user = req.auth.userId;
+    try {
+      const userId = req.auth.userId;
       const taskId = req.params.taskId;
-      const is_done = req.body.is_done
-      const request = await taskModel.updateCheckboxTask(is_done, user, taskId, );
+      const is_done = req.body.is_done;
+      await taskService.updateTaskStatus(is_done, userId, taskId);
       res.status(200).json({
         message: "la tache à bien été mise à jour",
       });
     } catch (error) {
       console.log(error);
     }
-
-
-  }
+  },
 };
 module.exports = taskControllers;
