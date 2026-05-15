@@ -25,11 +25,13 @@ export class Dashboard implements OnInit {
   ngOnInit(): void {
     this.getTasks();
     this.getUserInfo();
-    this.searchInput.valueChanges.subscribe({next: (value: string | null) => {
-      this.getTasks();
-    }});
+    this.searchInput.valueChanges.subscribe({
+      next: (value: string | null) => {
+        this.getTasks();
+      },
+    });
   }
-  
+
   userFirstName = signal('');
   userLastName = signal('');
   userInitials = signal('');
@@ -58,13 +60,11 @@ export class Dashboard implements OnInit {
   signOut(): void {
     localStorage.removeItem('token');
     this.router.navigate(['/']);
-    toast.success('Vous vous êtes déconnecté')
+    toast.success('Vous vous êtes déconnecté');
   }
 
   addTaskInput = new FormControl('', [Validators.required, Validators.maxLength(100)]);
   updateTaskInput = new FormControl('', [Validators.required, Validators.maxLength(100)]);
-
-
 
   getTasks() {
     let descriptionParams: string | undefined = undefined;

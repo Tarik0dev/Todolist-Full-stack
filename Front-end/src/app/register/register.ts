@@ -48,10 +48,10 @@ export class RegisterForm implements OnInit {
       // Décortiquons le NOUVEAU colis
       const colisPourApi: RegisterRequestInterface = {
         // C'est beaucoup plus direct maintenant :
-        firstName: valeurs.firstName || '', // On prend le prénom
-        lastName: valeurs.lastName || '', // On prend le nom
-        email: valeurs.email || '', // On prend l'email
-        password: valeurs.password || '', // On prend le mot de passe
+        firstName: valeurs.firstName || '',
+        lastName: valeurs.lastName || '',
+        email: valeurs.email || '',
+        password: valeurs.password || '',
       };
 
       // On envoie le colis

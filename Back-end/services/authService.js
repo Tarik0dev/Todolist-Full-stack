@@ -23,7 +23,7 @@ async function resetPassword(password, token) {
   const user = await authModel.findByEmail(email);
 
   if (!user) {
-    console.log("2. Utilisateur inconnu. On ne fait rien.");
+   
     throw new Error("Utilisateur inexistant.");
   }
 
@@ -35,7 +35,7 @@ async function forgotPassword(email) {
   const user = await authModel.findByEmail(email);
 
   if (!user) {
-    console.log("2. Utilisateur inconnu. On ne fait rien.");
+    
     throw new Error("Utilisateur inexistant.");
   }
 

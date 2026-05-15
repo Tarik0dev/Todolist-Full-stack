@@ -1,16 +1,16 @@
-export interface AddTaskResponseInterface{
-    message: string
+export interface AddTaskResponseInterface {
+  message: string;
 }
 
 export interface Task {
-    id: number,
-    description: string,
-    is_done: boolean,
+  id: number;
+  description: string;
+  is_done: boolean;
 }
 
 export interface GetAllTaskResponseInterface {
-    total: number,
-    ongoing: number,
-    completed: number,
-    result: Task[]
+  total: number;
+  ongoing: number;
+  completed: number;
+  result: Task[];
 }

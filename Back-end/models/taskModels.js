@@ -48,10 +48,10 @@ const taskModel = {
       [user, taskId],
     );
   },
-  update: async (description, user, taskId) => {
+  update: async (userId, taskId, description) => {
     const result = await pool.query(
       "UPDATE tasks SET description = $1 WHERE user_id = $2 AND id = $3",
-      [description, user, taskId],
+      [description, userId, taskId],
     );
   },
 

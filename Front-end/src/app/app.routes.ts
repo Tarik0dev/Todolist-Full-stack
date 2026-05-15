@@ -17,21 +17,20 @@ export const routes: Routes = [
     component: Authentication,
     title: ' Connectez-vous !',
   },
-   {
+  {
     path: 'dashboard',
     component: Dashboard,
     title: 'Task Flow',
-    canActivate: [authGuard]
-
+    canActivate: [authGuard],
   },
-   {
+  {
     path: 'forgot-password',
-    component: ForgotPassword ,
+    component: ForgotPassword,
     title: 'TaskFlow',
   },
-   {
+  {
     path: 'reset-password/:token',
-    component: ResetPassword ,
+    component: ResetPassword,
     title: 'TaskFlow',
   },
 ];

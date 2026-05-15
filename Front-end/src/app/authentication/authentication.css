@@ -105,7 +105,7 @@ label {
 /* ========================================
    BOUTON
    ======================================== */
-button[type="submit"] {
+button[type='submit'] {
   width: 100%;
   padding: 12px;
   border: none;
@@ -117,12 +117,12 @@ button[type="submit"] {
   transition: all 0.2s ease;
 }
 
-button[type="submit"]:hover {
+button[type='submit']:hover {
   cursor: pointer;
   transform: scale(1.02);
 }
 
-button[type="submit"]:active {
+button[type='submit']:active {
   transform: scale(0.98);
 }
 
@@ -215,7 +215,7 @@ form a:hover {
     font-size: 0.85rem;
   }
 
-  button[type="submit"] {
+  button[type='submit'] {
     padding: 10px;
     font-size: 0.85rem;
   }

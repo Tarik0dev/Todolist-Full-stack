@@ -1,9 +1,8 @@
 export interface ForgotPasswordResponse {
-
-    password: string;
-    token: any
+  password: string;
+  token: any;
 }
 
 export interface ResetPasswordResponse {
-    message: string;
+  message: string;
 }

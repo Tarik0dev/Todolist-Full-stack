@@ -59,7 +59,7 @@ const taskControllers = {
         message: "la tache à bien été mise à jour",
       });
     } catch (error) {
-      console.log(error);
+      console.error("error--", error)
     }
   },
 

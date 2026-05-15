@@ -1,9 +1,3 @@
-export interface AddTaskRequestInterface{
-
-    description: string,
-    
-
-
+export interface AddTaskRequestInterface {
+  description: string;
 }
-
-

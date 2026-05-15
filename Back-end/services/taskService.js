@@ -41,6 +41,7 @@ async function updateTask(userId, taskId, description) {
     if (!description || description.length === 0) {
         throw new Error("Description manquante.")
     }
+    
     await taskModel.update(userId, taskId, description);
 }
 

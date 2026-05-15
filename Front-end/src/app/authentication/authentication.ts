@@ -30,16 +30,15 @@ export class Authentication implements OnInit {
   onSubmit() {
     const authValue = this.authForm.value;
     const credentials: SignInRequestInterface = {
-      email: authValue.email || '', //signifie : soit la valeur de l'input email soit rien si l'utilisateur ne le remplit pas dans ce cas il sera undifined
+      email: authValue.email || '',
       password: authValue.password || '',
     };
 
     this.authenticationService.signIn(credentials).subscribe({
       next: (response: SignInResponseInterface) => {
-      
         toast.success('Vous êtes bien connectés !');
         localStorage.setItem('token', response.user.token);
-        this.router.navigate(['/dashboard']); 
+        this.router.navigate(['/dashboard']);
       },
       error: () => {
         toast.error("L'identifiant et/ou le mot de passe sont incorrects");
