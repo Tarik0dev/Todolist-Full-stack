@@ -1,4 +1,4 @@
-const pool = require("./config/configDatabase"); // IMPORT IMPORTANT : On récupère le pool
+const pool = require("./config/configDatabase");
 const express = require("express");
 const cors = require("cors");
 const app = express();
@@ -39,7 +39,7 @@ app.listen(PORT, "0.0.0.0", async () => {
     await pool.query("SELECT NOW()");
 
   } catch (error) {
-    console.error("❌ Échec de connexion à la BDD :", error.message);
+    console.error(" Échec de connexion à la Base de données :", error.message);
     process.exit(1);
   }
 });

@@ -23,12 +23,13 @@
         <h1>Bonjour, {{ userFirstName() }}</h1>
         <p class="date">{{ today | date: 'fullDate' }}</p>
       </div>
+  
       <div class="header-right">
         <div class="search-box">
-          <span class="search-icon">🔍</span>
-          <input type="search" placeholder="Rechercher une tâche..." [formControl]="searchInput" />
+          <span class="search-icon" >🔍</span>
+          <input type="search"  placeholder="Rechercher une tâche..." [formControl]="searchInput" />
         </div>
-        <button type="button" class="btn-logout" (click)="signOut()">Déconnexion</button>
+    <button type="button" class="btn-logout" (click)="signOut()">Déconnexion</button>
       </div>
     </header>
 
@@ -58,12 +59,8 @@
 
     <section class="add-task-section">
       <form class="add-task-form">
-        <input
-          type="text"
-          placeholder="Ajouter une nouvelle tâche..."
-          class="task-input"
-          [formControl]="addTaskInput"
-        />
+        <input type="text" placeholder="Ajouter une nouvelle tâche..." class="task-input"
+          [formControl]="addTaskInput" />
         <button type="button" class="btn-add" (click)="onSubmitNewTask()">+ Ajouter</button>
       </form>
     </section>
@@ -75,52 +72,36 @@
 
       <div class="tasks-list">
         @for (item of tasks(); track item.id) {
-          <div class="task-item">
-            <label class="checkbox-container">
-              <input type="checkbox" [checked]="item.is_done" (change)="updateCheckbox(item)" />
-              <span class="checkmark"></span>
-            </label>
-            <div class="task-content">
-              <h3 class="task-title" [class.taskIsDone]="item.is_done === true">
-                {{ item.description }}
-              </h3>
-              <div class="task-meta"></div>
-            </div>
-
-            <div class="task-actions">
-              <hlm-dialog>
-                <button hlmDialogTrigger hlmBtn class="bg-sky-700">✏️</button>
-                <hlm-dialog-content
-                  class="sm:max-w-106.25 bg-neutral-800 w-96"
-                  *hlmDialogPortal="let ctx"
-                >
-                  <hlm-dialog-footer> </hlm-dialog-footer>
-
-                  <form class="flex flex-col gap-4">
-                    <label for="" class="text-sky-100 text-center">Modifier la tache</label>
-                    <input
-                      type="text"
-                      name=""
-                      id=""
-                      class="bg-sky-100 task-modified"
-                      [formControl]="updateTaskInput"
-                    />
-                    <button
-                      type="submit"
-                      hlmBtn
-                      class="bg-sky-700"
-                      brnDialogClose
-                      (click)="OnSubmitUpdatedTask(item.id)"
-                    >
-                      Modifier
-                    </button>
-                  </form>
-                </hlm-dialog-content>
-              </hlm-dialog>
-
-              <button class="btn-icon btn-delete" (click)="delete(item.id)">🗑️</button>
-            </div>
+        <div class="task-item">
+          <label class="checkbox-container">
+            <input type="checkbox" [checked]="item.is_done" (change)="updateCheckbox(item)" />
+            <span class="checkmark"></span>
+          </label>
+          <div class="task-content">
+            <h3 class="task-title" [class.taskIsDone]="item.is_done === true">
+              {{ item.description }}
+            </h3>
+            <div class="task-meta"></div>
           </div>
+
+          <div class="task-actions">
+            <hlm-dialog>
+              <button hlmDialogTrigger hlmBtn class="btn bg-sky-700 " >✏️</button>
+              <hlm-dialog-content class="sm:max-w-106.25 bg-neutral-800 w-96" *hlmDialogPortal="let ctx">
+                <hlm-dialog-footer> </hlm-dialog-footer>
+
+                <form class="flex flex-col gap-4">
+                  <label for="" class="text-sky-100 text-center">Modifier la tache</label>
+                  <input type="text" name="" id="" class="bg-sky-100 task-modified" [formControl]="updateTaskInput" />
+                  <button type="submit" hlmBtn class="bg-sky-700" brnDialogClose (click)="OnSubmitUpdatedTask(item.id)">
+                    Modifier
+                  </button>
+                </form>
+              </hlm-dialog-content>
+            </hlm-dialog>
+            <button class="btn btn-icon btn-delete" (click)="delete(item.id)">🗑️</button>
+          </div>
+        </div>
         }
       </div>
     </section>

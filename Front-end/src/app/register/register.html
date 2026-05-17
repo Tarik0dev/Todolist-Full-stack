@@ -51,6 +51,15 @@
         <label for="password">Definissez votre mot de passe*: </label>
         <input id="password" type="password" formControlName="password" />
       </div>
+<ul>
+
+  <li>- Au moins 8 caractères *</li>
+  <li>- Une majuscule (A-Z) *</li>
+  <li>- Une minuscule (a-z) * </li>
+  <li>- Un chiffre (0-9) *</li>
+  <li>- Un caractère spécial (#?!&#64;$%^&*-) *</li>
+ 
+</ul>
       <small
         class="error"
         [class.visible]="
@@ -60,21 +69,13 @@
       >
         Veuillez saisir un mot de passe
       </small>
+
       <div class="group-input">
         <label for="confirmPassword">Confirmez votre mot de passe*: </label>
         <input id="confirmPassword" type="password" formControlName="confirmPassword" />
-        @if (registerForm.get('confirmPassword')?.value !== registerForm.get('password')?.value) {
-          <small
-            class="error"
-            [class.visible]="
-              registerForm.controls.confirmPassword.invalid &&
-              (registerForm.controls.confirmPassword.dirty ||
-                registerForm.controls.confirmPassword.touched)
-            "
-          >
-            mot de passe différent
-          </small>
-        }
+       
+        
+
       </div>
       <button type="submit" class="button">Envoyer</button>
       <small><i>* Champs obligatoires</i></small>

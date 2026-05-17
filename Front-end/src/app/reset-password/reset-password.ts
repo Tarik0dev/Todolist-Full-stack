@@ -1,8 +1,8 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthenticationService } from '../app/services/authentication.service';
-import { ResetPasswordRequestInterface } from '../app/models/request/forgotPasswordRequest.interface';
+import { AuthenticationService } from '../services/authentication.service';
+import { ResetPasswordRequestInterface } from '../models/request/forgotPasswordRequest.interface';
 import { toast } from 'ngx-sonner';
 
 @Component({

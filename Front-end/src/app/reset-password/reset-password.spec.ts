@@ -20,3 +20,4 @@ describe('ResetPassword', () => {
     expect(component).toBeTruthy();
   });
 });
+

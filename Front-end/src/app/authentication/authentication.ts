@@ -36,7 +36,7 @@ export class Authentication implements OnInit {
 
     this.authenticationService.signIn(credentials).subscribe({
       next: (response: SignInResponseInterface) => {
-        toast.success('Vous êtes bien connectés !');
+        toast.success('Bienvenue dans votre espace !');
         localStorage.setItem('token', response.user.token);
         this.router.navigate(['/dashboard']);
       },

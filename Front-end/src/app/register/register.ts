@@ -1,9 +1,14 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { FormControl, ReactiveFormsModule, FormGroup, Validators } from '@angular/forms';
+import { FormControl, ReactiveFormsModule, FormGroup, Validators} from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { AuthenticationService } from '../services/authentication.service';
 import { RegisterRequestInterface } from '../models/request/authenticationRequest.interface';
+import { RegisterResponseInterface } from '../models/response/authenticationResponse.interface';
 import { Router } from '@angular/router';
+import { toast } from 'ngx-sonner';
+import { HttpErrorResponse } from '@angular/common/http';
+
+
 
 @Component({
   selector: 'app-register',
@@ -34,34 +39,42 @@ export class RegisterForm implements OnInit {
   });
 
   passwordsMatch(): boolean {
+
+  
     return (
       this.registerForm.get('password')?.value === this.registerForm.get('confirmPassword')?.value
     );
+   
   }
 
+
+
   onSubmit() {
+    
     const passwordsOk = this.passwordsMatch();
+    if (!passwordsOk){
+      toast.error('Les deux mots de passe ne sont pas identiques.')
+    }
 
     if (this.registerForm.valid && passwordsOk) {
       const valeurs = this.registerForm.value;
 
-      // Décortiquons le NOUVEAU colis
-      const colisPourApi: RegisterRequestInterface = {
-        // C'est beaucoup plus direct maintenant :
+      const formValues: RegisterRequestInterface = {
         firstName: valeurs.firstName || '',
         lastName: valeurs.lastName || '',
         email: valeurs.email || '',
         password: valeurs.password || '',
       };
 
-      // On envoie le colis
-      this.authenticationService.register(colisPourApi).subscribe({
-        next: (reponse) => {
-          alert(reponse.message);
+      this.authenticationService.register(formValues).subscribe({
+        next: (response: RegisterResponseInterface) => {
+          toast.success(response.message);
+
           this.router.navigate(['/']);
         },
-        error: (erreur) => {
-          console.error('Erreur :', erreur);
+        error: (error: HttpErrorResponse) => {
+          const errorBody = error.error as RegisterResponseInterface
+          toast.error(errorBody.message);
         },
       });
     } else {

@@ -10,7 +10,7 @@ const authController = {
       const { email, password } = req.body;
       const response = await authService.login(email, password);
       res.status(200).json({
-        message: "Utilisateur connecté",
+        message: "Heureux de vous voir !",
         user: response
       });
     } catch (error) {
@@ -26,15 +26,15 @@ const authController = {
 
       res
         .status(201)
-        .json({ message: "L'inscription à été réalisé avec succés bravo !!!" });
+        .json({ message: "Compte créé avec succès !" });
     } catch (error) {
       if (error.code === "23505") {
         return res.status(409).json({
-          error: "Cet email est déjà utilisé",
+          message: "Cet email est déjà utilisé.",
         });
       }
       console.error("erreur : ", error);
-      res.status(500).json({ error: error.message });
+      res.status(500).json({ message: "Erreur serveur, Veuillez réessayer" });
     }
   },
 };

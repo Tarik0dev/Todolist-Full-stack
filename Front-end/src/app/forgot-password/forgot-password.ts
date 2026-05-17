@@ -33,12 +33,12 @@ export class ForgotPassword {
       this.api.forgotPassword(email).subscribe({
         next: (response) => {
           this.emailSent = true;
-          toast.success('Un email a été envoyé à votre adresse');
+          toast.success(response.message ?? 'Opération réussie');
           this.router.navigate(['']);
         },
 
         error: (error) => {
-          toast.error('Le serveur est actuellement indisponible, veuillez réessayer ultérieuement');
+       toast.error(error.error?.message ?? 'Une erreur est survenue');
           this.errorEmail = true;
         },
       });

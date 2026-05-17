@@ -9,8 +9,7 @@ const forgotPasswordController = {
         .status(200)
         .json({ message: "Si l'email existe, un lien a été envoyé." });
     } catch (error) {
-      console.error("ERREUR CRITIQUE :", error);
-      res.status(500).json({ error: "Erreur serveur lors de l'envoi." });
+      res.status(500).json({ message: "Erreur serveur, Veuillez réessayer plus tard." });
     }
   },
 };
