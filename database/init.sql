@@ -18,7 +18,8 @@ CREATE TABLE tasks (
     description TEXT NOT NULL,
     is_done BOOLEAN DEFAULT FALSE,
     user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
-    created_at TIMESTAMPTZ DEFAULT NOW()
+    created_at TIMESTAMPTZ DEFAULT NOW(),
+    priority VARCHAR(20) NOT NULL CHECK (priority IN ('high','medium','low'))
 );
 
 COMMIT;

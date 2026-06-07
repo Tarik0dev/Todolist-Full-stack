@@ -4,9 +4,9 @@ const taskControllers = {
   add: async (req, res) => {
     const userId = req.auth.userId;
     try {
-      const { description } = req.body;
+      const { description, priority } = req.body;
 
-      await taskService.addTask(description, userId);
+      await taskService.addTask(description, userId, priority);
 
 
       res.status(201).json({

@@ -1,17 +1,18 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AddTaskRequestInterface } from '../models/request/crudTaskRequest.interface';
 import { CrudTaskService } from '../services/crud-task.service';
 import { AddTaskResponseInterface, Task } from '../models/response/crudTaskResponse.interface';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmDialogImports } from '@spartan-ng/helm/dialog';
-import { DatePipe } from '@angular/common';
+import { DatePipe, SlicePipe, TitleCasePipe } from '@angular/common';
 import { toast } from 'ngx-sonner';
+
 
 @Component({
   selector: 'app-dashboard',
-  imports: [ReactiveFormsModule, HlmButtonImports, HlmDialogImports, DatePipe],
+  imports: [ReactiveFormsModule, HlmButtonImports, HlmDialogImports, DatePipe, TitleCasePipe, SlicePipe],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css',
 })
@@ -39,6 +40,20 @@ export class Dashboard implements OnInit {
   searchInput = new FormControl<string>('');
 
   today: number = Date.now();
+
+  priorities: {label: string, value: string}[ ] = [
+    { label: "Faible", value: "low"},
+    { label: "Moyenne", value: "medium"},
+    { label: "Urgente", value: "high"},
+  ]
+
+  createTaskForm = new FormGroup({
+    name : new FormControl('', [Validators.required, Validators.maxLength(100)]),
+    priority : new FormControl('medium', [Validators.required, Validators.maxLength(100)])
+  })
+  updateTaskInput = new FormControl('', [Validators.required, Validators.maxLength(100)]);
+
+
   getUserInfo() {
     const token = localStorage.getItem('token');
 
@@ -46,15 +61,10 @@ export class Dashboard implements OnInit {
       const payload = token.split('.')[1];
       const decoded = JSON.parse(atob(payload));
 
-      // Affiche tout le contenu du token
-      console.log('Token décodé :', decoded);
-      const userFirstName = decoded.firstname;
-      const userLastName = decoded.lastname;
-      const firstInitial = decoded.firstName.charAt(0).toUpperCase();
-      const lastInitial = decoded.lastName.charAt(0).toUpperCase();
-      this.userFirstName.set(decoded.firstName);
-      this.userLastName.set(decoded.lastName);
-      this.userInitials.set(firstInitial + lastInitial);
+      let userFirstName = decoded.firstName;
+      let userLastName = decoded.lastName;
+      this.userFirstName.set(userFirstName);
+      this.userLastName.set(userLastName);
     }
   }
   signOut(): void {
@@ -63,8 +73,7 @@ export class Dashboard implements OnInit {
     toast.success('Vous vous êtes déconnecté');
   }
 
-  addTaskInput = new FormControl('', [Validators.required, Validators.maxLength(100)]);
-  updateTaskInput = new FormControl('', [Validators.required, Validators.maxLength(100)]);
+
 
   getTasks() {
     let descriptionParams: string | undefined = undefined;
@@ -126,16 +135,19 @@ export class Dashboard implements OnInit {
   }
 
   onSubmitNewTask() {
-    if (this.addTaskInput.valid) {
-      const value = this.addTaskInput.value;
+    console.log(this.createTaskForm.value)
+    if (this.createTaskForm.valid) {
+      const form = this.createTaskForm.value;
+
       const taskData: AddTaskRequestInterface = {
-        description: value || '',
+        description: form.name || '',
+        priority: form.priority || 'medium'
       };
 
       this.api.addTask(taskData).subscribe({
         next: (response: AddTaskResponseInterface) => {
           console.log('succès :', response.message);
-          this.addTaskInput.setValue(null);
+          this.createTaskForm.reset();
           this.getTasks();
         },
         error: (error) => {
@@ -145,3 +157,5 @@ export class Dashboard implements OnInit {
     }
   }
 }
+
+

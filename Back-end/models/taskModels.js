@@ -1,10 +1,10 @@
 const pool = require("../config/configDatabase");
 
 const taskModel = {
-  create: async ({ description, userId }) => {
+  create: async ({ description, userId, priority }) => {
     const result = await pool.query(
-      "INSERT INTO tasks (description, user_id) VALUES ($1, $2) RETURNING *",
-      [description, userId],
+      "INSERT INTO tasks (description, user_id, priority) VALUES ($1, $2, $3) RETURNING *",
+      [description, userId, priority],
     );
 
     return result.rows[0]

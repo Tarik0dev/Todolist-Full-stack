@@ -9,7 +9,7 @@
   padding: 0;
   box-sizing: border-box;
 }
-
+button {cursor: pointer;}
 body {
   height: 100%;
   width: 100%;
@@ -25,24 +25,16 @@ body {
     'Open Sans',
     'Helvetica Neue',
     sans-serif;
-  background-color: #cdcdce;
+  background-color:var(--white);
 }
 
 :root {
-  /* couleurs de base */
   --blue-text: #08579d;
-  --blue-background: #5aa0de;
-  --blue-light: #86bbea;
-  --blue-dark: #1473c9;
-
-  /* Couleurs complémentaires pour le dashboard */
-  --background-color: #cdcdce;
+  --blue-background: #8fbce3;
+  --blue-dark: #d6ecff;
   --white: #ffffff;
   --text-dark: #08579d;
   --text-light: #5a7a9a;
-  --success: #22c55e;
-  --warning: #f59e0b;
-  --danger: #ef4444;
   --sidebar-bg: #08579d;
   --sidebar-text: #86bbea;
   --border-radius: 12px;
@@ -65,14 +57,14 @@ input:-webkit-autofill:active {
 
   -webkit-box-shadow: 0 0 0px 1000px var(--blue-dark) inset !important;
 
-  -webkit-text-fill-color: var(--white) !important;
+  -webkit-text-fill-color: var(--blue-text) !important;
 
   transition: background-color 5000s ease-in-out 0s;
 }
 
 input:autofill {
   box-shadow: 0 0 0px 1000px var(--blue-dark) inset !important;
-  -webkit-text-fill-color: var(--white) !important;
+  -webkit-text-fill-color: var(--blue-text) !important;
 }
 
 

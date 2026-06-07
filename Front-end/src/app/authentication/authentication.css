@@ -9,7 +9,7 @@
   align-items: center;
   flex-direction: column;
   gap: 16px;
-  background-color: var(--background-color);
+  background-color: var(--white);
 }
 
 /* ========================================
@@ -88,18 +88,18 @@ label {
   padding: 10px 14px;
   border-radius: 8px;
   background-color: var(--blue-dark);
-  color: var(--white);
+  color: var(--blue-text);
   font-size: 0.95rem;
   transition: box-shadow 0.2s ease;
 }
 
 .group-input input::placeholder {
-  color: var(--blue-light);
+  color: var(--blue-text);
 }
 
 .group-input input:focus {
   outline: none;
-  box-shadow: 0 0 0 2px var(--white);
+  box-shadow: 0 0 0 2px var(--blue-text);
 }
 
 /* ========================================
@@ -152,13 +152,13 @@ form a:hover {
 }
 
 .view > p a {
-  color: var(--blue-dark);
+  color: var(--blue-text);
   font-weight: 600;
   text-decoration: underline;
 }
 
 .view > p a:hover {
-  color: var(--blue-text);
+  color: var(--blue-dark);
 }
 
 /* ========================================

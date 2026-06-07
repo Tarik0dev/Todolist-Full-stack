@@ -1,13 +1,18 @@
 const taskModel = require("../models/taskModels");
 
-async function addTask(description, userId) {
+async function addTask(description, userId, priority) {
     if (!description || description.length === 0) {
         throw new Error("Description manquante.")
+    }
+
+    if (!priority) {
+        throw new Error("Un indice de priorité est nécéssaire.")
     }
 
     await taskModel.create({
         description,
         userId,
+        priority
     });
 }
 

@@ -7,10 +7,10 @@
 
     <div class="sidebar-footer">
       <div class="user-profile">
-        <div class="avatar">{{ userInitials() }}</div>
+        <div class="avatar">{{ userFirstName() | titlecase | slice: 0 : 1 }} {{ userLastName() | titlecase | slice: 0 :
+          1 }}</div>
         <div class="user-info">
-          <span class="user-name">{{ userFirstName() + ' ' + userLastName() }}</span>
-          <span class="user-email"></span>
+          <span class="user-name">{{ userFirstName() | titlecase }} {{ userLastName() | titlecase }}</span>
         </div>
       </div>
     </div>
@@ -20,36 +20,37 @@
     <!-- HEADER -->
     <header class="header">
       <div class="header-left">
-        <h1>Bonjour, {{ userFirstName() }}</h1>
+        <h1>Bonjour, {{ userFirstName() | titlecase }}</h1>
         <p class="date">{{ today | date: 'fullDate' }}</p>
+
       </div>
-  
+
       <div class="header-right">
         <div class="search-box">
-          <span class="search-icon" >🔍</span>
-          <input type="search"  placeholder="Rechercher une tâche..." [formControl]="searchInput" />
+          <img src="search.png" alt="" class="search-logo">
+          <input type="search" placeholder="Rechercher une tâche..." [formControl]="searchInput" />
         </div>
-    <button type="button" class="btn-logout" (click)="signOut()">Déconnexion</button>
+        <button type="button" class="btn-logout" (click)="signOut()">Déconnexion</button>
       </div>
     </header>
 
     <section class="stats-container">
-      <div class="stat-card stat-total">
-        <div class="stat-icon">📋</div>
+      <div class="stat-card">
+        <img src="total.png" alt="" class="stat-icon">
         <div class="stat-info">
           <span class="stat-number">{{ totalTasks() }}</span>
           <span class="stat-label">Total Tâches</span>
         </div>
       </div>
-      <div class="stat-card stat-pending">
-        <div class="stat-icon">⏳</div>
+      <div class="stat-card">
+        <img src="on-going.png" alt="" class="stat-icon">
         <div class="stat-info">
           <span class="stat-number">{{ ongoingTasks() }}</span>
           <span class="stat-label">En Cours</span>
         </div>
       </div>
-      <div class="stat-card stat-completed">
-        <div class="stat-icon">✅</div>
+      <div class="stat-card">
+        <img src="complete.png" alt="logo tâches complétées" class="stat-icon">
         <div class="stat-info">
           <span class="stat-number">{{ completedTasks() }}</span>
           <span class="stat-label">Complétées</span>
@@ -58,10 +59,14 @@
     </section>
 
     <section class="add-task-section">
-      <form class="add-task-form">
-        <input type="text" placeholder="Ajouter une nouvelle tâche..." class="task-input"
-          [formControl]="addTaskInput" />
-        <button type="button" class="btn-add" (click)="onSubmitNewTask()">+ Ajouter</button>
+      <form [formGroup]="createTaskForm" class="add-task-form">
+        <input type="text" placeholder="Ajouter une nouvelle tâche..." class="task-input" formControlName="name" />
+        <select name="" id="" class="select-priority" formControlName="priority">
+          @for (priority of priorities; track priority.label) {
+            <option [value]="priority.value">{{ priority.label }}</option>
+          }
+        </select>
+        <button type="button" class="btn-blue" (click)="onSubmitNewTask()">+ Ajouter</button>
       </form>
     </section>
 
@@ -81,25 +86,28 @@
             <h3 class="task-title" [class.taskIsDone]="item.is_done === true">
               {{ item.description }}
             </h3>
-            <div class="task-meta"></div>
+
           </div>
 
           <div class="task-actions">
             <hlm-dialog>
-              <button hlmDialogTrigger hlmBtn class="btn bg-sky-700 " >✏️</button>
-              <hlm-dialog-content class="sm:max-w-106.25 bg-neutral-800 w-96" *hlmDialogPortal="let ctx">
+              <button hlmDialogTrigger hlmBtn class="btn btn-blue"><img src="modify.png" alt=""
+                  class="icon-task"></button>
+              <hlm-dialog-content class="sm:max-w-106.25 bg-neutral-800 w-96 modify-radius" *hlmDialogPortal="let ctx">
                 <hlm-dialog-footer> </hlm-dialog-footer>
 
-                <form class="flex flex-col gap-4">
+                <form class="flex flex-col gap-4 ">
                   <label for="" class="text-sky-100 text-center">Modifier la tache</label>
-                  <input type="text" name="" id="" class="bg-sky-100 task-modified" [formControl]="updateTaskInput" />
-                  <button type="submit" hlmBtn class="bg-sky-700" brnDialogClose (click)="OnSubmitUpdatedTask(item.id)">
+                  <input type="text" name="" id="" class="bg-sky-100 task-modified " [formControl]="updateTaskInput" />
+                  <button type="submit" hlmBtn class="bg-sky-700" brnDialogClose (click)="OnSubmitUpdatedTask(item.id)"
+                    class="btn-blue">
                     Modifier
                   </button>
                 </form>
               </hlm-dialog-content>
             </hlm-dialog>
-            <button class="btn btn-icon btn-delete" (click)="delete(item.id)">🗑️</button>
+            <button class="btn btn-icon btn-delete" (click)="delete(item.id)"><img src="remove.png" alt=""
+                class="icon-task"></button>
           </div>
         </div>
         }
