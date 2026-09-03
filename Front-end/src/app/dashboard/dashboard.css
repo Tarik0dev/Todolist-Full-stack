@@ -146,8 +146,8 @@
 }
 
 
-
-
+.blue-button {background-color: #005696;color: #f4f7f9;padding: 10px;}
+.blue-button:hover {background-color: #1867a3;}
 /* MAIN CONTENT */
 
 .main-content {
@@ -251,7 +251,7 @@
   padding: 14px 28px;
 
   border: none;
-  border-radius: 10px;
+ 
 
   background-color: var(--blue-text);
 
@@ -264,11 +264,11 @@
 }
 
 .btn-blue:hover {
-  background-color: var(--blue-background);
+  background-color: var(--blue-hover);
 
-  color: var(--blue-light);
+  color: var(--white);
 
-  transform: translateY(-2px);
+ 
 
   box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
 }
@@ -338,8 +338,6 @@
 
 .stat-card:hover {
   border-color: var(--blue-background);
-
-  transform: translateY(-4px);
 
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
 }

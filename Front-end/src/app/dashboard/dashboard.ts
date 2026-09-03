@@ -8,11 +8,21 @@ import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmDialogImports } from '@spartan-ng/helm/dialog';
 import { DatePipe, SlicePipe, TitleCasePipe } from '@angular/common';
 import { toast } from 'ngx-sonner';
+import { HlmBadgeImports } from '@spartan-ng/helm/badge';
 
 
 @Component({
   selector: 'app-dashboard',
-  imports: [ReactiveFormsModule, HlmButtonImports, HlmDialogImports, DatePipe, TitleCasePipe, SlicePipe],
+  standalone: true,
+  imports: [
+    ReactiveFormsModule,
+    ...HlmButtonImports,
+    ...HlmDialogImports,
+    DatePipe,
+    TitleCasePipe,
+    SlicePipe,
+    ...HlmBadgeImports,
+  ],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css',
 })

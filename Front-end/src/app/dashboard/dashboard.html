@@ -4,7 +4,7 @@
       <img src="logo.png" alt="logo" class="logo-icon" />
       <h2>TaskFlow</h2>
     </div>
-
+<button class="blue-button"> + Nouveau projet</button>
     <div class="sidebar-footer">
       <div class="user-profile">
         <div class="avatar">{{ userFirstName() | titlecase | slice: 0 : 1 }} {{ userLastName() | titlecase | slice: 0 :
@@ -22,7 +22,6 @@
       <div class="header-left">
         <h1>Bonjour, {{ userFirstName() | titlecase }}</h1>
         <p class="date">{{ today | date: 'fullDate' }}</p>
-
       </div>
 
       <div class="header-right">
@@ -89,6 +88,8 @@
 
           </div>
 
+
+			<span hlmBadge class="bg-green-200 text-green-400 dark:bg-green-800 dark:text-green-200">Faible</span>
           <div class="task-actions">
             <hlm-dialog>
               <button hlmDialogTrigger hlmBtn class="btn btn-blue"><img src="modify.png" alt=""

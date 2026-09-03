@@ -1,26 +1,38 @@
 <div class="view">
   <div class="form">
-    <div class="header">
-      <img src="logo.png" alt="logo" width="60px" />
+    <div class="group-header">
+       <div class="header">
+      <img src="logo.png" alt="logo" width="40px" />
       <h1>TaskFlow</h1>
     </div>
-    <h2>Connectez-vous</h2>
-    <h3>Commencez à organiser vos tâches dès aujourd'hui</h3>
+    <h2>Bienvenue sur TaskFlow</h2>
+    <h3>Connexion à votre espace de travail</h3>
+    </div>
+   
     <form [formGroup]="authForm" (ngSubmit)="onSubmit()">
-      <div class="group-input">
-        <label for="email">Adresse mail: </label>
-        <input id="email" type="email" formControlName="email" />
-      </div>
+    <div class="group-input">
+  <label for="email">Adresse mail </label>
 
-      <div class="group-input">
-        <label for="password">Mot de passe: </label>
-        <input id="password" type="password" formControlName="password" />
-      </div>
+  <div class="input-wrapper">
+    <span class="material-symbols-outlined input-icon">mail</span>
+    <input id="email" type="email" formControlName="email" placeholder="nom@domaine.com" />
+  </div>
+</div>
 
-      <button type="submit" hlmBtn class="bg-neutral-300" variant="secondary">Envoyer</button>
+     <div class="group-input">
+      <div class="group-password"> <label for="password">Mot de passe </label> <a routerLink="forgot-password" >Mot de passe oublié ?</a></div>
+ 
 
-      <a routerLink="forgot-password">Mot de passe oublié ?</a>
+  <div class="input-wrapper">
+    <span class="material-symbols-outlined input-icon">lock</span>
+    <input id="password" type="password" formControlName="password" placeholder="••••••••••••" />
+  </div>
+</div>
+
+      <button type="submit" class="button-blue">Se connecter </button>
+
+       <p class="light-blue-text center">Pas encore de compte ? <a routerLink="/register">S'inscrire</a></p>
     </form>
   </div>
-  <p>Pas encore inscrit ? <a routerLink="/register">inscrivez-vous</a></p>
+
 </div>

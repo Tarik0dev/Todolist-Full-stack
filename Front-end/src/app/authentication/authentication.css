@@ -17,7 +17,7 @@
    ======================================== */
 .form {
   width: 420px;
-  background-color: var(--blue-background);
+  background-color: white;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -39,23 +39,23 @@
   gap: 16px;
   width: 100%;
   padding-bottom: 24px;
-  border-bottom: 1px solid var(--blue-dark);
+ 
 }
 
 h1 {
   color: var(--blue-text);
-  font-size: 1.8rem;
-  font-weight: 700;
+  font-size: 1.5rem;
+  font-weight: 800;
 }
 
 h2 {
-  color: var(--blue-text);
-  font-size: 1.3rem;
+  color: var(--black);
+  font-size: 1.125rem;
   font-weight: 600;
 }
 
 h3 {
-  color: var(--white);
+  color: var(--light-blue-text);
   font-size: 0.85rem;
   font-weight: 400;
   text-align: center;
@@ -78,23 +78,25 @@ form {
 }
 
 label {
-  color: var(--blue-text);
-  font-size: 0.85rem;
+  color: var(--black);
+  font-size: 0.75rem;
   font-weight: 600;
 }
+
+
 
 .group-input input {
   width: 100%;
   padding: 10px 14px;
   border-radius: 8px;
-  background-color: var(--blue-dark);
+  background-color: var(--white);
   color: var(--blue-text);
   font-size: 0.95rem;
   transition: box-shadow 0.2s ease;
 }
 
 .group-input input::placeholder {
-  color: var(--blue-text);
+  color: var(--light-blue-text);
 }
 
 .group-input input:focus {
@@ -102,63 +104,11 @@ label {
   box-shadow: 0 0 0 2px var(--blue-text);
 }
 
-/* ========================================
-   BOUTON
-   ======================================== */
-button[type='submit'] {
-  width: 100%;
-  padding: 12px;
-  border: none;
-  border-radius: 8px;
-  font-size: 0.95rem;
-  font-weight: 600;
-  cursor: pointer;
-  margin-top: 8px;
-  transition: all 0.2s ease;
-}
-
-button[type='submit']:hover {
-  cursor: pointer;
-  transform: scale(1.02);
-}
-
-button[type='submit']:active {
-  transform: scale(0.98);
-}
-
+.group-password {display: flex; justify-content: space-between;}
+.center {text-align: center;}
 .invalid-form {
   opacity: 0.6;
   pointer-events: none;
-}
-
-/* ========================================
-   LIENS
-   ======================================== */
-form a {
-  color: var(--white);
-  font-size: 0.8rem;
-  text-align: center;
-  text-decoration: underline;
-  transition: opacity 0.2s ease;
-}
-
-form a:hover {
-  opacity: 0.8;
-}
-
-.view > p {
-  color: var(--text-light);
-  font-size: 0.85rem;
-}
-
-.view > p a {
-  color: var(--blue-text);
-  font-weight: 600;
-  text-decoration: underline;
-}
-
-.view > p a:hover {
-  color: var(--blue-dark);
 }
 
 /* ========================================
@@ -215,12 +165,45 @@ form a:hover {
     font-size: 0.85rem;
   }
 
-  button[type='submit'] {
-    padding: 10px;
-    font-size: 0.85rem;
-  }
+
 
   h1 {
-    font-size: 1.3rem;
+    font-size: 1.25rem;
+    font-weight: 600;
   }
 }
+/* Style du conteneur du champ */
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+/* Positionnement de l'icône mail */
+.input-icon {
+  position: absolute;
+  left: 12px;
+  color: #888; /* Couleur de l'icône */
+  font-size: 20px;
+  pointer-events: none; /* Permet de cliquer à travers l'icône pour se focaliser sur l'input */
+}
+
+/* Ajustement de l'input */
+.group-input input {
+  width: 100%;
+  padding: 10px 10px 10px 40px; /* Le 40px à gauche réserve l'espace pour l'icône */
+  border-radius: 6px;
+  font-size: 14px;
+  outline: none;
+}
+
+/* Optionnel : Changement de couleur au survol/focus */
+.group-input input:focus {
+  border-color: #3b82f6;
+}
+
+.input-wrapper:focus-within .input-icon {
+  color: #3b82f6;
+}
+
