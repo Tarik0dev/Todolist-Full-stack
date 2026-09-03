@@ -9,9 +9,7 @@
   padding: 0;
   box-sizing: border-box;
 }
-button {
-  cursor: pointer;
-}
+
 body {
   height: 100%;
   width: 100%;
@@ -20,23 +18,21 @@ body {
 }
 
 :root {
-  --blue-background: #8fbce3;
-  --blue-dark: #d6ecff;
-  --text-dark: #08579d;
-  --text-light: #5a7a9a;
-  --sidebar-bg: #003e6f;
+  
   --shadow: 0 4px 6px -1px rgba(8, 87, 157, 0.15);
   --shadow-lg: 0 10px 15px -3px rgba(8, 87, 157, 0.2);
   /* nouvelles couleurs */
 
   --dark-blue: #003366;
   --light-blue: #003e6f;
+  --extra-light-blue: #005696;
   --blue-text: #08579d;
   --light-blue-text: #5a7a9a;
   --blue-hover: #1867a3;
   --white: #f7fafc;
   --black: #181c1e;
   --border-radius: 10px;
+  --grey : rgba(170, 167, 167, 0.322);
 }
 
 /* les inputs */
@@ -73,28 +69,86 @@ input:autofill {
   background-color: var(--white);
   color: var(--blue-text);
   font-size: 0.9rem;
-  border: none;
+   border: 1px solid var(--grey);
   outline: none;
   box-sizing: border-box;
   transition: box-shadow 0.2s ease, background-color 0.2s ease;
 }
+.group-input input:focus {
 
+  box-shadow: 0 0 0 2px var(--blue-text);
+}
+.group-input input::placeholder {
+  color: var(--light-blue-text);
+}
+.group-input input.ng-invalid.ng-touched {
+  box-shadow: 0 0 0 2px #b91c1c;
+  background-color: var(--white);
+}
 
+.security-card {
+  background-color: var(--white);
+  border: 1px solid rgba(8, 87, 157, 0.1);
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin-top: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+ 
+}
+.security-card-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--blue-text);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
 
+.security-icon {
+  font-size: 16px;
+  color: var(--blue-text);
+}
+
+.security-rules {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+
+}
+
+.security-rules li {
+  color: var(--light-blue-text);
+  font-size: 0.7rem;
+  line-height: 1.2;
+}
+.input-wrapper:focus-within .input-icon {
+  color: var(--blue-text);
+}
 /* les boutons */
 button {
   border-radius: 10px;
   border: none;
+  cursor: pointer;
+  height: fit-content;
 }
 button:active {
   transform: scale(0.98);
 }
 
 .button-blue {
-  padding: 14px 28px;
+  padding: 10px 28px;
   background-color: var(--blue-text);
   color: var(--white);
   white-space: nowrap;
+  display: flex;
+  gap: 10px;
+  font-weight: 600;
+
 }
 
 .button-blue:hover {
@@ -122,6 +176,7 @@ button:active {
 a:hover {
   opacity: 0.8;
   text-decoration: underline;
+  cursor: pointer;
 
 }
 p, a, label { font-size: 12px;}
@@ -131,5 +186,6 @@ p, a, label { font-size: 12px;}
 .separation-bottom {
 
   margin: 10px;
-  border-bottom: var(--white) 2px solid;
+  border-bottom: var(--grey) 1px solid;
 }
+

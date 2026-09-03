@@ -17,7 +17,7 @@
 /* Carte du Formulaire */
 .form {
   width: 100%;
-  max-width: 420px; /* S'adapte parfaitement sur tous les écrans */
+  max-width: 420px;
   background-color: #ffffff;
   display: flex;
   flex-direction: column;
@@ -118,21 +118,6 @@ label {
   transition: color 0.2s ease;
 }
 
-.group-input input {
-  width: 100%;
-  padding: 10px 14px 10px 40px; /* Espace réservé pour l'icône à gauche */
-  border-radius: 8px;
-  background-color: var(--white);
-  color: var(--blue-text);
-  font-size: 0.9rem;
-  border: none;
-  outline: none;
-  box-sizing: border-box;
-  transition: box-shadow 0.2s ease, background-color 0.2s ease;
-}
-
-
-
 /* Animation de l'icône lors du focus du champ */
 .input-wrapper:focus-within .input-icon {
   color: var(--blue-text);
@@ -147,10 +132,7 @@ label {
 }
 
 /* Style d'input en cas d'erreur de validation Angular */
-.group-input input.ng-invalid.ng-touched {
-  box-shadow: 0 0 0 2px #b91c1c;
-  background-color: #fef2f2;
-}
+
 
 .error {
   min-height: 14px;
