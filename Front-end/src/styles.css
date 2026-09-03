@@ -42,7 +42,7 @@ body {
 /* les inputs */
 input {
   border: none;
-  background-color: var(--blue-dark);
+  background-color: var(--white);
 }
 input:focus {
   outline: none;
@@ -51,17 +51,36 @@ input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0px 1000px var(--blue-dark) inset !important;
+  -webkit-box-shadow: 0 0 0px 1000px var(--white) inset !important;
 
   -webkit-text-fill-color: var(--blue-text) !important;
 
   transition: background-color 5000s ease-in-out 0s;
 }
-
+input::placeholder {
+  color: var(--light-blue-text);
+  opacity: 0.6;
+}
 input:autofill {
-  box-shadow: 0 0 0px 1000px var(--blue-dark) inset !important;
+  box-shadow: 0 0 0px 1000px var(--white) inset !important;
   -webkit-text-fill-color: var(--blue-text) !important;
 }
+
+.group-input input {
+  width: 100%;
+  padding: 10px 14px 10px 40px;
+  border-radius: 8px;
+  background-color: var(--white);
+  color: var(--blue-text);
+  font-size: 0.9rem;
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+  transition: box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+
+
 /* les boutons */
 button {
   border-radius: 10px;
@@ -97,6 +116,7 @@ button:active {
   text-align: center;
   transition: opacity 0.2s ease;
    font-weight: 600;
+   padding: 0 10px;
 }
 
 a:hover {
@@ -104,8 +124,12 @@ a:hover {
   text-decoration: underline;
 
 }
-
+p, a, label { font-size: 12px;}
 /* Session authentification et inscription */
 .forgot-password { font-size: 12px;}
+.center { display: flex; align-items: center;gap: 10px; text-align: center;justify-content: center;}
+.separation-bottom {
 
-p, a, label { font-size: 12px;}
+  margin: 10px;
+  border-bottom: var(--white) 2px solid;
+}

@@ -1,57 +1,67 @@
-/* ========================================
-   PAGE AUTHENTIFICATION
-   ======================================== */
+/* ==========================================================================
+   PAGE CONTAINER & LAYOUT (Partagé Auth / Register)
+   ========================================================================== */
 .view {
   width: 100%;
-  height: 100vh;
+  min-height: 100vh; /* S'adapte si le formulaire Register est plus long */
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   gap: 16px;
   background-color: var(--white);
+  padding: 20px 0;
+  box-sizing: border-box;
 }
 
-/* ========================================
-   FORMULAIRE PRINCIPAL
-   ======================================== */
+/* Carte du Formulaire */
 .form {
-  width: 420px;
-  background-color: white;
+  width: 100%;
+  max-width: 420px; /* S'adapte parfaitement sur tous les écrans */
+  background-color: #ffffff;
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
+  align-items: center;
   border-radius: var(--border-radius);
   gap: 20px;
   padding: 40px 32px;
   border: 1px solid var(--blue-dark);
   box-shadow: var(--shadow-lg);
+  box-sizing: border-box;
 }
 
-/* ========================================
-   HEADER (Logo + Titre)
-   ======================================== */
+/* ==========================================================================
+   HEADER & TYPOGRAPHIE (Partagé Auth / Register)
+   ========================================================================== */
+.group-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
 .header {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 16px;
+  gap: 12px;
   width: 100%;
-  padding-bottom: 24px;
- 
+  margin-bottom: 8px;
 }
 
 h1 {
   color: var(--blue-text);
   font-size: 1.5rem;
   font-weight: 800;
+  margin: 20px 0;
 }
 
 h2 {
   color: var(--black);
   font-size: 1.125rem;
   font-weight: 600;
+  text-align: center;
+  margin: 10;
 }
 
 h3 {
@@ -59,15 +69,16 @@ h3 {
   font-size: 0.85rem;
   font-weight: 400;
   text-align: center;
+  margin: 4px 0 0 0;
 }
 
-/* ========================================
-   FORMULAIRE
-   ======================================== */
+/* ==========================================================================
+   FORMULAIRE & CHAMPS DE SAISIE (Partagé Auth / Register)
+   ========================================================================== */
 form {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 16px;
   width: 100%;
 }
 
@@ -75,6 +86,13 @@ form {
   display: flex;
   flex-direction: column;
   gap: 6px;
+  width: 100%;
+}
+
+.group-password {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 label {
@@ -83,41 +101,61 @@ label {
   font-weight: 600;
 }
 
+/* Conteneur d'input avec icône */
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
 
+.input-icon {
+  position: absolute;
+  left: 12px;
+  color: var(--light-blue-text);
+  font-size: 20px;
+  pointer-events: none;
+  transition: color 0.2s ease;
+}
 
 .group-input input {
   width: 100%;
-  padding: 10px 14px;
+  padding: 10px 14px 10px 40px; /* Espace réservé pour l'icône à gauche */
   border-radius: 8px;
   background-color: var(--white);
   color: var(--blue-text);
-  font-size: 0.95rem;
-  transition: box-shadow 0.2s ease;
-}
-
-.group-input input::placeholder {
-  color: var(--light-blue-text);
-}
-
-.group-input input:focus {
+  font-size: 0.9rem;
+  border: none;
   outline: none;
-  box-shadow: 0 0 0 2px var(--blue-text);
+  box-sizing: border-box;
+  transition: box-shadow 0.2s ease, background-color 0.2s ease;
 }
 
-.group-password {display: flex; justify-content: space-between;}
-.center {text-align: center;}
+
+
+/* Animation de l'icône lors du focus du champ */
+.input-wrapper:focus-within .input-icon {
+  color: var(--blue-text);
+}
+
+/* ==========================================================================
+   GESTION DES ERREURS & ÉTATS (Reactive Forms)
+   ========================================================================== */
 .invalid-form {
   opacity: 0.6;
   pointer-events: none;
 }
 
-/* ========================================
-   MESSAGES D'ERREUR
-   ======================================== */
+/* Style d'input en cas d'erreur de validation Angular */
+.group-input input.ng-invalid.ng-touched {
+  box-shadow: 0 0 0 2px #b91c1c;
+  background-color: #fef2f2;
+}
+
 .error {
   min-height: 14px;
   font-size: 0.75rem;
-  color: rgb(141, 18, 18);
+  color: #b91c1c;
   opacity: 0;
   transition: opacity 0.2s ease;
 }
@@ -126,84 +164,32 @@ label {
   opacity: 1;
 }
 
-/* ========================================
-   RESPONSIVE
-   ======================================== */
-@media (max-width: 768px) {
+/* ==========================================================================
+   UTILITAIRES
+   ========================================================================== */
+.center {
+  text-align: center;
+}
+
+.forgot-password {
+  font-size: 12px;
+}
+
+/* ==========================================================================
+   RESPONSIVE (Mobile / Tablette)
+   ========================================================================== */
+@media (max-width: 480px) {
   .form {
-    width: 90%;
-    padding: 32px 24px;
+    width: 92%;
+    padding: 28px 20px;
   }
 
   .header {
     flex-direction: column;
-    gap: 12px;
-    padding-bottom: 16px;
+    gap: 8px;
   }
 
   h1 {
-    font-size: 1.5rem;
-  }
-
-  h2 {
-    font-size: 1.1rem;
-  }
-
-  h3 {
-    font-size: 0.8rem;
+    font-size: 1.35rem;
   }
 }
-
-@media (max-width: 480px) {
-  .form {
-    width: 95%;
-    padding: 24px 16px;
-  }
-
-  .group-input input {
-    padding: 8px 12px;
-    font-size: 0.85rem;
-  }
-
-
-
-  h1 {
-    font-size: 1.25rem;
-    font-weight: 600;
-  }
-}
-/* Style du conteneur du champ */
-.input-wrapper {
-  position: relative;
-  display: flex;
-  align-items: center;
-  width: 100%;
-}
-
-/* Positionnement de l'icône mail */
-.input-icon {
-  position: absolute;
-  left: 12px;
-  color: #888; /* Couleur de l'icône */
-  font-size: 20px;
-  pointer-events: none; /* Permet de cliquer à travers l'icône pour se focaliser sur l'input */
-}
-
-/* Ajustement de l'input */
-.group-input input {
-  width: 100%;
-  padding: 10px 10px 10px 40px; /* Le 40px à gauche réserve l'espace pour l'icône */
-  border-radius: 6px;
-  font-size: 14px;
-  outline: none;
-}
-
-/* Optionnel : Changement de couleur au survol/focus */
-.group-input input:focus {
-  border-color: #3b82f6;
-}
-
-.input-wrapper:focus-within .input-icon {
-  color: #3b82f6;
-}
-

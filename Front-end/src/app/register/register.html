@@ -1,17 +1,23 @@
 <div class="view">
   <div class="form">
-    <div class="header">
-      <img src="logo.png" alt="logo" width="60px" />
-      <h1>TaskFlow</h1>
-    </div>
-    <h2>Créez un compte</h2>
-    <h3>Commencez à organiser vos tâches dès aujourd'hui</h3>
-    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-      <div class="group-input">
-        <label for="firstName">Prénom*: </label>
-        <input id="firstName" type="text" formControlName="firstName" />
+    <div class="group-header">
+      <div class="header">
+        <img src="logo.png" alt="logo" width="40px" />
+        <h1>TaskFlow</h1>
       </div>
-      <small
+      <h2>Créez un compte</h2>
+      <h3>Commencez à organiser vos tâches dès aujourd'hui</h3>
+    </div>
+
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <div class="group-name">
+<div class="group-input">
+        <label for="firstName">Prénom *</label>
+        <div class="input-wrapper">
+          <span class="material-symbols-outlined input-icon">person</span>
+          <input id="firstName" type="text" formControlName="firstName" placeholder="Jean" />
+        </div>
+        <small
         class="error"
         [class.visible]="
           registerForm.controls.firstName.invalid &&
@@ -20,11 +26,17 @@
       >
         Veuillez saisir votre prénom
       </small>
-      <div class="group-input">
-        <label for="lastName">Nom de famille*: </label>
-        <input id="lastName" type="text" formControlName="lastName" />
       </div>
-      <small
+      
+
+      <!-- Nom -->
+      <div class="group-input">
+  <label for="lastName">Nom de famille *</label>
+  <div class="input-wrapper">
+    <span class="material-symbols-outlined input-icon">id_card</span>
+    <input id="lastName" type="text" formControlName="lastName" placeholder="Dupont" />
+  </div>
+   <small
         class="error"
         [class.visible]="
           registerForm.controls.lastName.invalid &&
@@ -33,10 +45,19 @@
       >
         Veuillez saisir votre nom de famille
       </small>
+</div>
+     
+      </div>
+      <!-- Prénom -->
+      
 
+      <!-- Email -->
       <div class="group-input">
-        <label for="email">Adresse mail*: </label>
-        <input id="email" type="email" formControlName="email" />
+        <label for="email">Adresse mail *</label>
+        <div class="input-wrapper">
+          <span class="material-symbols-outlined input-icon">mail</span>
+          <input id="email" type="email" formControlName="email" placeholder="nom@domaine.com" />
+        </div>
       </div>
       <small
         class="error"
@@ -47,19 +68,30 @@
       >
         Veuillez saisir votre adresse mail
       </small>
-      <div class="group-input">
-        <label for="password">Definissez votre mot de passe*: </label>
-        <input id="password" type="password" formControlName="password" />
-      </div>
-<ul>
 
-  <li>- Au moins 8 caractères *</li>
-  <li>- Une majuscule (A-Z) *</li>
-  <li>- Une minuscule (a-z) * </li>
-  <li>- Un chiffre (0-9) *</li>
-  <li>- Un caractère spécial (#?!&#64;$%^&*-) *</li>
- 
-</ul>
+      <!-- Mot de passe -->
+      <div class="group-input">
+        <label for="password">Définissez votre mot de passe *</label>
+        <div class="input-wrapper">
+          <span class="material-symbols-outlined input-icon">lock</span>
+          <input id="password" type="password" formControlName="password" placeholder="••••••••••••" />
+        </div>
+      </div>
+
+    <div class="security-card">
+  <div class="security-card-header">
+    <span class="material-symbols-outlined security-icon">shield</span>
+    <span> Critères de sécurité requis : </span>
+  </div>
+  <ul class="security-rules">
+    <li>• Au moins 8 caractères</li>
+    <li>• Une majuscule (A-Z)</li>
+    <li>• Une minuscule (a-z)</li>
+    <li>• Un chiffre (0-9)</li>
+    <li>• Un caractère spécial (#?!@$%^&*-)</li>
+  </ul>
+</div>
+
       <small
         class="error"
         [class.visible]="
@@ -67,19 +99,33 @@
           (registerForm.controls.password.dirty || registerForm.controls.password.touched)
         "
       >
-        Veuillez saisir un mot de passe
+        Veuillez saisir un mot de passe valide
       </small>
 
+      <!-- Confirmation Mot de passe -->
       <div class="group-input">
-        <label for="confirmPassword">Confirmez votre mot de passe*: </label>
-        <input id="confirmPassword" type="password" formControlName="confirmPassword" />
-       
-        
-
+        <label for="confirmPassword">Confirmez votre mot de passe *</label>
+        <div class="input-wrapper">
+          <span class="material-symbols-outlined input-icon">lock_reset</span>
+          <input id="confirmPassword" type="password" formControlName="confirmPassword" placeholder="••••••••••••" />
+        </div>   <small
+        class="error"
+        [class.visible]="
+          registerForm.controls.confirmPassword.invalid &&
+          (registerForm.controls.confirmPassword.dirty || registerForm.controls.confirmPassword.touched)
+        "
+      >
+        Veuillez confirmer votre mot de passe
+      </small>
       </div>
-   <button type="submit" hlmBtn class="bg-neutral-300" variant="secondary">Envoyer</button>
-      <small><i>* Champs obligatoires</i></small>
+
+      <button type="submit" class="button-blue">Créer mon compte</button>
+      <small class="mandatory-info" >* Champs obligatoires</small>
+      <div class="separation-bottom"></div>
     </form>
+      <p class="light-blue-text center">
+    Vous avez déjà un compte ?<a routerLink="/">Se connecter</a>
+  </p>
   </div>
-  <p>déjà inscrit ? <a routerLink="">se connecter</a></p>
+
 </div>

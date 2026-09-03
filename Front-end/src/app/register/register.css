@@ -1,5 +1,5 @@
 /* ========================================
-   PAGE INSCRIPTION
+   PAGE CONTAINERS
    ======================================== */
 .view {
   width: 100%;
@@ -9,217 +9,240 @@
   align-items: center;
   flex-direction: column;
   gap: 16px;
-  padding: 32px 0;
   background-color: var(--white);
+  padding: 32px 0;
+  box-sizing: border-box;
 }
 
-/* ========================================
-   FORMULAIRE PRINCIPAL
-   ======================================== */
 .form {
-  width: 420px;
-  background-color: var(--blue-background);
+  width: 100%;
+  max-width: 500px;
+  background-color: #ffffff;
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
+  align-items: center;
   border-radius: var(--border-radius);
-  gap: 20px;
+  gap: 30px;
   padding: 40px 32px;
   border: 1px solid var(--blue-dark);
   box-shadow: var(--shadow-lg);
+  box-sizing: border-box;
 }
 
 /* ========================================
-   HEADER (Logo + Titre)
+   HEADER (Logo + Titres)
    ======================================== */
+.group-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
 .header {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 16px;
+  gap: 12px;
   width: 100%;
-  padding-bottom: 24px;
-  border-bottom: 1px solid var(--blue-dark);
+  margin-bottom: 8px;
 }
 
 h1 {
   color: var(--blue-text);
-  font-size: 1.8rem;
-  font-weight: 700;
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin: 0;
 }
 
 h2 {
-  color: var(--blue-text);
-  font-size: 1.3rem;
+  color: var(--black);
+  font-size: 1.125rem;
   font-weight: 600;
+  text-align: center;
+  margin: 10px 0;
 }
 
 h3 {
-  color: var(--white);
+  color: var(--light-blue-text);
   font-size: 0.85rem;
   font-weight: 400;
   text-align: center;
+  margin: 4px 0 0 0;
 }
 
 /* ========================================
-   FORMULAIRE
+   FORMULAIRE & CHAMPS
    ======================================== */
 form {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 10px;
   width: 100%;
 }
-
+.group-name {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
 .group-input {
   display: flex;
   flex-direction: column;
   gap: 6px;
-  margin-top: 8px;
+  width: 100%;
 }
- ul { color: var(--white)}
+
 label {
-  color: var(--blue-text);
-  font-size: 0.85rem;
+  color: var(--black);
+  font-size: 0.75rem;
   font-weight: 600;
+}
+
+/* Input Wrapper & Icônes */
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.input-icon {
+  position: absolute;
+  left: 12px;
+  color: var(--light-blue-text);
+  font-size: 20px;
+  pointer-events: none;
+  transition: color 0.2s ease;
 }
 
 .group-input input {
   width: 100%;
-  padding: 10px 14px;
+  padding: 10px 14px 10px 40px; /* Espace réservé pour l'icône à gauche */
   border-radius: 8px;
-  background-color: var(--blue-dark);
+  background-color: var(--white);
   color: var(--blue-text);
-  font-size: 0.95rem;
-  transition: box-shadow 0.2s ease;
-}
-
-.group-input input::placeholder {
-  color: var(--blue-dark);
-}
-
-.group-input input:focus {
-  outline: none;
-  box-shadow: 0 0 0 2px var(--blue-text);
-}
-
-/* ========================================
-   BOUTON
-   ======================================== */
-button[type='submit'] {
-  width: 100%;
-  padding: 12px;
+  font-size: 0.9rem;
   border: none;
+  outline: none;
+  box-sizing: border-box;
+  transition: box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+
+
+.security-card {
+  background-color: var(--white);
+  border: 1px solid rgba(8, 87, 157, 0.1);
   border-radius: 8px;
-  font-size: 0.95rem;
-  font-weight: 600;
-  cursor: pointer;
-  margin-top: 8px;
-  transition: all 0.2s ease;
+  padding: 10px 12px;
+  margin-top: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+ 
 }
-
-button[type='submit']:hover {
-  cursor: pointer;
-  transform: scale(1.02);
-}
-
-button[type='submit']:active {
-  transform: scale(0.98);
-}
-
-/* ========================================
-   CHAMPS OBLIGATOIRES
-   ======================================== */
-form > small {
-  color: var(--white);
+.security-card-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--blue-text);
   font-size: 0.75rem;
-  text-align: center;
-  margin-top: 8px;
+  font-weight: 700;
+}
+
+.security-icon {
+  font-size: 16px;
+  color: var(--blue-text);
+}
+
+.security-rules {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+
+}
+
+.security-rules li {
+  color: var(--light-blue-text);
+  font-size: 0.7rem;
+  line-height: 1.2;
+}
+.input-wrapper:focus-within .input-icon {
+  color: var(--blue-text);
 }
 
 /* ========================================
-   MESSAGES D'ERREUR
+   RÈGLES DU MOT DE PASSE
+   ======================================== */
+.password-rules {
+  list-style: none;
+  padding: 0;
+  margin: 2px 0 6px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.password-rules li {
+  color: var(--light-blue-text);
+  font-size: 0.7rem;
+}
+
+/* ========================================
+   BOUTONS ET TEXTES DIVERS
+   ======================================== */
+.button-blue {
+  margin-top: 10px;
+  width: 100%;
+}
+
+.mandatory-info {
+  color: var(--light-blue-text);
+  font-size: 0.7rem;
+  text-align: center;
+  display: block;
+}
+
+
+/* ========================================
+MESSAGES D'ERREUR (Angular)
    ======================================== */
 .error {
   min-height: 14px;
   font-size: 0.75rem;
-  color: rgb(141, 18, 18);
+  color: #b91c1c;
   opacity: 0;
   transition: opacity 0.2s ease;
+  margin-top: -4px;
 }
 
 .error.visible {
   opacity: 1;
 }
 
-/* ========================================
-   LIEN CONNEXION
-   ======================================== */
-.view > p {
-  color: var(--text-light);
-  font-size: 0.85rem;
-}
-
-.view > p a {
-  color: var(--blue-dark);
-  font-weight: 600;
-  text-decoration: underline;
-}
-
-.view > p a:hover {
-  color: var(--blue-text);
+.group-input input.ng-invalid.ng-touched {
+  box-shadow: 0 0 0 2px #b91c1c;
+  background-color: #fef2f2;
 }
 
 /* ========================================
    RESPONSIVE
    ======================================== */
-@media (max-width: 768px) {
+@media (max-width: 480px) {
   .form {
-    width: 90%;
-    padding: 32px 24px;
+    width: 92%;
+    padding: 28px 20px;
   }
 
   .header {
     flex-direction: column;
-    gap: 12px;
-    padding-bottom: 16px;
+    gap: 8px;
   }
 
   h1 {
-    font-size: 1.5rem;
-  }
-
-  h2 {
-    font-size: 1.1rem;
-  }
-
-  h3 {
-    font-size: 0.8rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .form {
-    width: 95%;
-    padding: 24px 16px;
-  }
-
-  .group-input input {
-    padding: 8px 12px;
-    font-size: 0.85rem;
-  }
-
-  label {
-    font-size: 0.8rem;
-  }
-
-  .button {
-    padding: 10px;
-    font-size: 0.85rem;
-  }
-
-  h1 {
-    font-size: 1.3rem;
+    font-size: 1.35rem;
   }
 }
